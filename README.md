@@ -1,2 +1,5 @@
-# connected-block-textures
-An implementation of the MCPatcher/Optifine connected textures format on the Fabric modloader.
+# Connected
+
+Connected Block Textures unofficial Forge port.
+
+An implementation of the MCPatcher/Optifine connected textures format.

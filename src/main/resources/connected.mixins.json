@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "org.thinkingstudio.connected.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"client": [
+      "ModelLoaderMixin",
+      "ReloadableResourceManagerImplMixin",
+      "ClientWorldMixin",
+      "IdentifierMixin",
+      "NativeImageAccessor"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

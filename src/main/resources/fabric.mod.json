@@ -17,11 +17,11 @@
   "environment": "client",
   "entrypoints": {
     "main": [
-      "io.github.nuclearfarts.cbt.ConnectedBlockTextures"
+      "org.thinkingstudio.connected.Connected"
     ]
   },
   "mixins": [
-    "connected_block_textures.mixins.json"
+    "connected.mixins.json"
   ],
 
   "depends": {
