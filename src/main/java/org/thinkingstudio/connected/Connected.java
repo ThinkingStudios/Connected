@@ -31,6 +31,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 @Mod(Connected.MODID)
 public class Connected {
 	public static final String MODID = "connected";
+	public static final String MODNAME = "Connected";
 	public static final Logger LOGGER = LogManager.getLogger("Connected");
 
 	public static CBTResourcePack resourcePack;

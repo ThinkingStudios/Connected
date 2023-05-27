@@ -6,7 +6,7 @@ plugins {
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = project.archives_base_name
-version = project.mod_version
+version = "${project.mod_version}+${project.minecraft_version}"
 group = project.maven_group
 
 loom {
@@ -26,7 +26,7 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	forge "net.minecraftforge:forge:${project.forge_version}"
 
-    modImplementation("maven.modrinth:forgedapi:0.1.0+1.16.5")
+    modImplementation "maven.modrinth:forgedapi:${project.forgedapi_version}"
 }
 
 processResources {
@@ -37,7 +37,7 @@ processResources {
 	}
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
 	options.encoding = "UTF-8"
 
 	def targetVersion = 8
