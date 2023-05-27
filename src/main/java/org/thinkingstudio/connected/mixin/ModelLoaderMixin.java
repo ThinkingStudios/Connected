@@ -40,7 +40,7 @@ public abstract class ModelLoaderMixin {
 	@Shadow
 	private @Final ResourceManager resourceManager;
 
-	@Redirect(method = "<init>", at = @At(value = "INVOKE_STRING", target = "net/minecraft/util/profiler/Profiler.swap(Ljava/lang/String;)V", args = "ldc=textures"))
+	@Redirect(method = "processLoading", at = @At(value = "INVOKE_STRING", target = "net/minecraft/util/profiler/Profiler.swap(Ljava/lang/String;)V", args = "ldc=textures"))
 	private void injectCbtModels(Profiler on, String str) {
 		on.swap("ctm");
 		Connected.overrideIdentifierCharRestriction = true;
