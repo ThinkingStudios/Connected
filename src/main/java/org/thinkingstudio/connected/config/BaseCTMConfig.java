@@ -16,8 +16,6 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import com.google.common.base.Predicates;
-
 import org.thinkingstudio.connected.Connected;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.texture.Sprite;
@@ -59,12 +57,11 @@ public abstract class BaseCTMConfig<Self extends BaseCTMConfig<Self>> implements
 		if(properties.containsKey("matchBlocks")) {
 			blockMatcher = Arrays.stream(properties.getProperty("matchBlocks").split(" ")).map(Identifier::new).collect(Collectors.toCollection(HashSet::new))::contains;
 		} else {
-			blockMatcher = Predicates.alwaysTrue();
+			blockMatcher = identifier -> true;
 		}
 		
 		Predicate<Biome> biomeMatcher;
-		if(properties.containsKey("biomes")) {
-			//@SuppressWarnings("resource")
+		if(properties.containsKey("biomes") && MinecraftClient.getInstance().world != null) {
 			Registry<Biome> biomes = MinecraftClient.getInstance().world.getRegistryManager().get(Registry.BIOME_KEY);
 			biomeMatcher = Arrays.stream(properties.getProperty("biomes").split(" ")).map(Identifier::new).map(biomes::get).collect(Collectors.toCollection(HashSet::new))::contains;
 		} else {
@@ -102,8 +99,8 @@ public abstract class BaseCTMConfig<Self extends BaseCTMConfig<Self>> implements
 				case "sides":
 					faces.add(Direction.NORTH);
 					faces.add(Direction.EAST);
-					faces.add(Direction.WEST);
 					faces.add(Direction.SOUTH);
+					faces.add(Direction.WEST);
 					break;
 				case "top":
 					faces.add(Direction.UP);
@@ -112,9 +109,7 @@ public abstract class BaseCTMConfig<Self extends BaseCTMConfig<Self>> implements
 					faces.add(Direction.DOWN);
 					break;
 				case "all":
-					for(Direction d : Direction.values()) {
-						faces.add(d);
-					}
+					faces.addAll(Arrays.asList(Direction.values()));
 					break;
 				default:
 					faces.add(Direction.valueOf(face.toUpperCase(Locale.ENGLISH))); //avoid the turkish bug
@@ -123,7 +118,7 @@ public abstract class BaseCTMConfig<Self extends BaseCTMConfig<Self>> implements
 			}
 			faceMatcher = faces::contains;
 		} else {
-			faceMatcher = Predicates.alwaysTrue();
+			faceMatcher = direction -> true;
 		}
 		
 		weight = Integer.parseInt(properties.getProperty("weight", "0"));
