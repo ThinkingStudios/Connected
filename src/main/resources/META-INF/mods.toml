@@ -26,6 +26,13 @@ side = "BOTH"
 [[dependencies.connected]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.16.5]"
+versionRange = "[1.16,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.connected]]
+modId = "forgedapi"
+mandatory = true
+versionRange = "[0.1,]"
 ordering = "NONE"
 side = "BOTH"
